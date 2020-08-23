@@ -35,17 +35,17 @@ class apiAuthTest extends TestCase
     }
 
     //register 401 eg didn't pass the security key
-    public function test_auth_register_login_401()
+    public function test_auth_register_login_403()
     {
         $data = [
             //Don't forget the key else you will get 401
         ];
 
         $this->post(route('register'), $data)
-                ->assertStatus(401);
+                ->assertStatus(403);
 
         $this->post(route('login'), $data)
-                ->assertStatus(401);
+                ->assertStatus(403);
     }
 
     //registering a user
