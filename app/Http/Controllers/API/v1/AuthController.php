@@ -13,10 +13,12 @@ use App\Helpers\Utility;
 
 use App\Models\DataUserModel;
 
+use App\Http\Controllers\API\v1\iAuthInterface;
+
 use Carbon\Carbon;
 use Validator;
 
-class AuthController extends Controller
+class AuthController extends Controller implements iAuthInterface
 {
     use ExceptionTrait;//if exception it will email developer set in config and return 500
 
@@ -81,13 +83,13 @@ class AuthController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         try {
             if(auth('api')->user()->token()->revoke())
                 return response()->json(['message' => 'Successfully logged out'], Response::HTTP_OK);
 
-            return response()->json(null, Response::HTTP_INTERNAL_SERVER_ERROR);
+            return response()->json(null, Response::HTTP_ACCEPTED);
         } catch (\Exception $e) {
             return response()->json(null, Response::HTTP_INTERNAL_SERVER_ERROR);
         }

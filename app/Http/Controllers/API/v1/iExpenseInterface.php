@@ -97,8 +97,7 @@ interface iExpenseInterface
      *        @OA\JsonContent(
      *             type="object",
      *             @OA\Property(
-     *                property="expenseItems",
-     *                type="array",
+     *                property="example",
      *                example={
      *                  "current_page": 1,
      *                      "data": {
@@ -156,8 +155,7 @@ interface iExpenseInterface
      *        @OA\JsonContent(
      *             type="object",
      *             @OA\Property(
-     *                property="expenseItems",
-     *                type="array",
+     *                property="example",
      *                example={
      *                    "id": 1,
      *                    "amount": "50.00",

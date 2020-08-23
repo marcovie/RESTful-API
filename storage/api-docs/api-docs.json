@@ -19,6 +19,130 @@
         }
     ],
     "paths": {
+        "/api/1.0/register": {
+            "post": {
+                "tags": [
+                    "register.register"
+                ],
+                "summary": "Register a user to be able to user our api",
+                "description": "Returns the stored expenses",
+                "operationId": "register",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/registerPost"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successfully created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "example": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/registerItems"
+                                            },
+                                            "example": {
+                                                "name": "Name",
+                                                "email": "email@email.com",
+                                                "created_at": "2020-08-23 10:09:37",
+                                                "updated_at": "2020-08-23 10:09:37"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/1.0/login": {
+            "post": {
+                "tags": [
+                    "register.login"
+                ],
+                "summary": "Logs in a user to be able to user our api",
+                "description": "Returns the Bearer token",
+                "operationId": "login",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/loginPost"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully logged in",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "example": {
+                                            "items": {
+                                                "$ref": "#/components/schemas/loginItems"
+                                            },
+                                            "example": {
+                                                "access_token": "long generated key",
+                                                "token_type": "Bearer",
+                                                "expires_at": "2020-08-30 10:22:58"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/api/1.0/logout": {
+            "get": {
+                "tags": [
+                    "register.logout"
+                ],
+                "summary": "Logs out user from system eg revoking it's key",
+                "description": "Returns 200",
+                "operationId": "logout",
+                "responses": {
+                    "200": {
+                        "description": "Successfully logged out",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/1.0/expense": {
             "get": {
                 "tags": [
@@ -72,8 +196,7 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "expenseItems": {
-                                            "type": "array",
+                                        "example": {
                                             "items": {
                                                 "$ref": "#/components/schemas/items"
                                             },
@@ -142,8 +265,7 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "expenseItems": {
-                                            "type": "array",
+                                        "example": {
                                             "items": {
                                                 "$ref": "#/components/schemas/items"
                                             },
@@ -294,6 +416,68 @@
     },
     "components": {
         "schemas": {
+            "registerItems": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "registerPost": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "loginPost": {
+                "properties": {
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "key": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "loginItems": {
+                "properties": {
+                    "access_token": {
+                        "type": "string"
+                    },
+                    "token_type": {
+                        "type": "string"
+                    },
+                    "expires_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
             "items": {
                 "properties": {
                     "id": {
@@ -324,6 +508,14 @@
                     }
                 },
                 "type": "object"
+            }
+        },
+        "responses": {
+            "202": {
+                "description": "HTTP ACCEPTED"
+            },
+            "403": {
+                "description": "Forbidden"
             }
         }
     },
