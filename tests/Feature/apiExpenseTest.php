@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use Symfony\Component\HttpFoundation\Response;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -40,7 +42,7 @@ class apiExpenseTest extends TestCase
             'per_page',
             'data'          =>  ['*'=>['id','amount','description','created_at','updated_at']],
         ])
-        ->assertStatus(200);
+        ->assertStatus(Response::HTTP_OK);
     }
 
     //Store value via api
@@ -52,7 +54,7 @@ class apiExpenseTest extends TestCase
         ];
 
         $this->post(route('expense.store'), $data)
-            ->assertStatus(201)
+            ->assertStatus(Response::HTTP_CREATED)
             ->assertJsonStructure(['id','amount','description','created_at','updated_at']);
     }
 
@@ -65,7 +67,7 @@ class apiExpenseTest extends TestCase
 
         $this->get(route('expense.show', $expense->id))
              ->assertJson($expense->format())
-             ->assertStatus(200);
+             ->assertStatus(Response::HTTP_OK);
     }
 
     //Update a record
@@ -85,7 +87,7 @@ class apiExpenseTest extends TestCase
 
         $this->json('PUT', route('expense.update', $expense->id), $updatedData)
             ->assertJson($expense->format())
-            ->assertStatus(200);
+            ->assertStatus(Response::HTTP_OK);
     }
 
     //Destroy a recrod
@@ -95,6 +97,6 @@ class apiExpenseTest extends TestCase
             'user_id' => $this->user->id
         ]);
 
-        $this->delete(route('expense.destroy', $expense->id))->assertStatus(204);
+        $this->delete(route('expense.destroy', $expense->id))->assertStatus(Response::HTTP_NO_CONTENT);
     }
 }

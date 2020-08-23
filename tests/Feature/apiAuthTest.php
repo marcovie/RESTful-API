@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use Symfony\Component\HttpFoundation\Response;
+
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -42,10 +44,10 @@ class apiAuthTest extends TestCase
         ];
 
         $this->post(route('register'), $data)
-                ->assertStatus(403);
+                ->assertStatus(Response::HTTP_FORBIDDEN);
 
         $this->post(route('login'), $data)
-                ->assertStatus(403);
+                ->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     //registering a user
@@ -59,7 +61,7 @@ class apiAuthTest extends TestCase
         ];
 
         $this->post(route('register'), $data)
-                ->assertStatus(201)
+                ->assertStatus(Response::HTTP_CREATED)
                 ->assertJsonStructure(['name','email','created_at','updated_at']);
     }
 
@@ -73,13 +75,13 @@ class apiAuthTest extends TestCase
         ];
 
         $this->post(route('login'), $data)
-                ->assertStatus(200);
+                ->assertStatus(Response::HTTP_OK);
     }
 
     //logout test
     public function test_auth_logout()
     {
         $this->get(route('logout'), ['Authorization' => 'Bearer ' . $this->accessToken])
-                ->assertStatus(200);
+                ->assertStatus(Response::HTTP_OK);
     }
 }
