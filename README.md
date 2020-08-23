@@ -43,6 +43,8 @@ I also added versioning to the APi incase v1.0 gets depracted in future and want
 
 I added postman files under root/postman which has the requests. Just remember to add Auth Bearer Token.
 
+I added interface for each controller (I did not structure it amazing) to show adding inteface and adding documentation for each function in interface not to clutter controller.
+
 ## Installation
 
 ```bash

@@ -10,4 +10,30 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    /**
+     * @OA\Info(
+     *      version="1.0.0",
+     *      title="RESTful API - OpenApi Documentation",
+     *      description="RESTful API documentation using swagger",
+     *      @OA\Contact(
+     *          url="https://about.me/marcovie"
+     *      ),
+     *      @OA\License(
+     *          name="Apache 2.0",
+     *          url="http://www.apache.org/licenses/LICENSE-2.0.html"
+     *      )
+     * )
+     *
+     * @OA\Server(
+     *      url=L5_SWAGGER_CONST_HOST,
+     *      description="Local API Server - php artisan serve"
+     * )
+
+     *
+     * @OA\Tag(
+     *     name="RESTful API",
+     *     description="API Endpoints of RESTful API"
+     * )
+     */
 }

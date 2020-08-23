@@ -1,0 +1,339 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "RESTful API - OpenApi Documentation",
+        "description": "RESTful API documentation using swagger",
+        "contact": {
+            "url": "https://about.me/marcovie"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://127.0.0.1:8000/api/1.0",
+            "description": "Local API Server - php artisan serve"
+        }
+    ],
+    "paths": {
+        "/api/1.0/expense": {
+            "get": {
+                "tags": [
+                    "expense.index"
+                ],
+                "summary": "Get a list of expenses - linked to your user",
+                "description": "Returns list of expenses",
+                "operationId": "index",
+                "parameters": [
+                    {
+                        "name": "sort",
+                        "in": "path",
+                        "description": "specific field",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orderby",
+                        "in": "path",
+                        "description": "desc or asc",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "from_date",
+                        "in": "path",
+                        "description": "YYYY-MM-DD",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "to_date",
+                        "in": "path",
+                        "description": "YYYY-MM-DD",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "expenseItems": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/items"
+                                            },
+                                            "example": {
+                                                "current_page": 1,
+                                                "data": [
+                                                    {
+                                                        "id": 1,
+                                                        "amount": "50.00",
+                                                        "description": "Fuel",
+                                                        "created_at": "2020-08-23 05:38:24",
+                                                        "updated_at": "2020-08-23 05:38:24"
+                                                    },
+                                                    {
+                                                        "id": 2,
+                                                        "amount": "50.00",
+                                                        "description": "Fuel",
+                                                        "created_at": "2020-08-23 05:38:24",
+                                                        "updated_at": "2020-08-23 05:38:24"
+                                                    }
+                                                ],
+                                                "first_page_url": "http://127.0.0.1:8000/api/1.0/expense?page=1",
+                                                "from": 1,
+                                                "last_page": 1,
+                                                "last_page_url": "http://127.0.0.1:8000/api/1.0/expense?page=1",
+                                                "next_page_url": null,
+                                                "path": "http://127.0.0.1:8000/api/1.0/expense",
+                                                "per_page": 5,
+                                                "prev_page_url": null,
+                                                "to": 2,
+                                                "total": 2
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "403 Forbidden"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "expense.store"
+                ],
+                "summary": "Store new expense - linked to your user",
+                "description": "Returns the stored expenses",
+                "operationId": "store",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "expenseItems": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/items"
+                                            },
+                                            "example": {
+                                                "id": 1,
+                                                "amount": "50.00",
+                                                "description": "Fuel",
+                                                "created_at": "2020-08-23 05:38:24",
+                                                "updated_at": "2020-08-23 05:38:24"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            }
+        },
+        "/expense/{id}": {
+            "get": {
+                "tags": [
+                    "expense.show"
+                ],
+                "summary": "Get expense information - linked to your user",
+                "description": "Returns expense data",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "expense id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/items"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "expense.update"
+                ],
+                "summary": "Update existing expense - linked to your user",
+                "description": "Returns updated expense data",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "expense id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/post"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful updated",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/items"
+                                }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "expense.destroy"
+                ],
+                "summary": "Delete existing expense - linked to your user",
+                "description": "Deletes a record and returns no content",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "expense id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "items": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "amount": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string"
+                    },
+                    "updated_at": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "post": {
+                "properties": {
+                    "amount": {
+                        "type": "integer"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "RESTful API",
+            "description": "API Endpoints of RESTful API"
+        }
+    ],
+    "security": [
+        []
+    ]
+}

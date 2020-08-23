@@ -13,9 +13,11 @@ use App\Models\DataExpenseModel;
 use App\Http\Traits\ExceptionTrait;
 use App\Helpers\Utility;
 
+use App\Http\Controllers\API\v1\iExpenseInterface;
+
 use Validator;
 
-class ExpenseController extends Controller
+class ExpenseController extends Controller implements iExpenseInterface
 {
     use ExceptionTrait;//if exception it will email developer set in config and return 500
 
@@ -47,7 +49,7 @@ class ExpenseController extends Controller
     {
         Utility::stripXSS($request);//clean any xss or html etc.
 
-        $validator = Validator::make($request->all(), DataExpenseModel::RULES, DataExpenseModel::CUSTOM_RULE_MESSAGES);
+        $validator = Validator::make($request->all(), DataExpenseModel::RULES_STORE, DataExpenseModel::CUSTOM_RULE_MESSAGES);
 
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], Response::HTTP_BAD_REQUEST);
@@ -74,7 +76,7 @@ class ExpenseController extends Controller
     {
         Utility::stripXSS($request);//clean any xss or html etc.
 
-        $validator = Validator::make($request->all(), DataExpenseModel::RULES, DataExpenseModel::CUSTOM_RULE_MESSAGES);
+        $validator = Validator::make($request->all(), DataExpenseModel::RULES_UPDATE, DataExpenseModel::CUSTOM_RULE_MESSAGES);
 
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], Response::HTTP_BAD_REQUEST);

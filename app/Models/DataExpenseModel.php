@@ -11,9 +11,14 @@ class DataExpenseModel extends Model
 
     const PAGINATION = 5;
 
-    const RULES = [//When storing or updating use these rules
+    const RULES_STORE = [//When storing or updating use these rules
         'amount'          => 'required|integer|min:100',//this must be in pence or cents (Better to work in this if you want to do totals for amounts later). Not sure what lowest amount is that is required but put min of £1
         'description'     => 'required|string|min:3',
+    ];
+
+    const RULES_UPDATE = [//When storing or updating use these rules
+        'amount'          => 'integer|min:100',//this must be in pence or cents (Better to work in this if you want to do totals for amounts later). Not sure what lowest amount is that is required but put min of £1
+        'description'     => 'string|min:3',
     ];
 
     const CUSTOM_RULE_MESSAGES = [//Custom message for storing Amounts in pence
@@ -44,7 +49,7 @@ class DataExpenseModel extends Model
         $dataExpenseModel = $dataUserModel->expense();
 
         if(!is_null($request->sort))
-            $dataExpenseModel->orderby($request->sort, (!is_null($request->orderby))?$request->orderby:'asc');
+            $dataExpenseModel->orderby($request->sort, (!is_null($request->orderby) && in_array(strtolower($request->orderby), ['desc', 'asc']))?$request->orderby:'asc');
 
         if(!is_null($request->from_date))
             $dataExpenseModel->whereDate('updated_at', '>=', date('Y-m-d 00:00:00', strtotime($request->from_date)));
