@@ -37,13 +37,13 @@ Is this api going to be used externally or just by internal mobile system. Is it
 
 Registering should not be open so not sure if 1 api key used for internal system(throttle would be issue) or if each person logins/register a unique key should be added when registering/login. If internal mobile api could be unique key hashed with dates. If its external might want to email them a key that expires over time. I added a dummy key to register and login(key => "password").
 
-I stored Expenses pence/cents as if you total expenses better with whole numbers. So you must pass cents. The output is json amount/100 to give 1.00
+I stored Expense amount in pence/cents as it would better when doing reporting to add up amounts. So you must pass amount in pence/cents. The output is json amount/100 to give 1.00
 
-I also added versioning to the APi incase v1.0 gets depracted in future and want to get all clients to move over.
+I also added versioning to the APi incase v1.0 gets deprecated the in future and we want to get all clients to moved over to v2.0.
 
-I added postman files under root/postman which has the requests. Just remember to add Auth Bearer Token.
+I added postman files under root/postman which has api requests for the functions. Just remember to add Auth Bearer Token.
 
-I added interface for each controller (I did not structure it amazing) to show adding inteface and adding documentation for each function in interface not to clutter controller.
+I added interface for each api controller to use inteface to declare api controller functions and to add the documentation syntax to it to clean up the api controller.
 
 ## Installation
 
@@ -63,6 +63,10 @@ Step 8 - php artisan serve
 ## Usage
 
 ```php
+//Read documentations
+Go to command line to the root of project and run: php artisan serve
+Then visit: http://{url}/api/documentation
+//Unit test
 Go to command line to the root of project and run: php artisan test
 ```
 
