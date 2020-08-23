@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use Symfony\Component\HttpFoundation\Response;
+
 use Closure;
 
 class CheckAuthApi
@@ -16,7 +18,7 @@ class CheckAuthApi
     public function handle($request, Closure $next)
     {
         if(is_null(auth('api')->user()))
-            return response()->json(['message' => 'Unauthenticated.'], 401);
+            abort(Response::HTTP_FORBIDDEN, '403 Forbidden');
         else
             return $next($request);
     }

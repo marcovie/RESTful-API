@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\API\v1;
 
+use Symfony\Component\HttpFoundation\Response;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -25,16 +27,12 @@ class AuthController extends Controller
         Utility::stripXSS($request);//clean any xss or html etc.
 
         if($request->key != 'password')//Need to make a key that unique maybe with dates for every hour so that not anyone can register for now I made default key password incase you want to test register
-            return response()->json(['message' => 'Unauthenticated.'], 401);
+            abort(Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $validator = Validator::make($request->all(), [
-            'name'      => 'required|string',
-            'email'     => 'required|string|email|unique:data_users',
-            'password'  => 'required|string'
-        ]);
+        $validator = Validator::make($request->all(), DataUserModel::RULE_REGISTER);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 400);
+            return response()->json(['error'=>$validator->errors()], Response::HTTP_BAD_REQUEST);
         }
 
         try {
@@ -45,9 +43,8 @@ class AuthController extends Controller
             ]);
 
           if($dataUserModel->save())
-            return response()->json($dataUserModel->format(), 201);//added format if we want to specific type format for certain things
+            return response()->json($dataUserModel->format(), Response::HTTP_CREATED);//added format if we want to specific type format for certain things
 
-          // return response()->json(null, 204);
         } catch (\Exception $e) {
             return $this->sendApiException(self::API_CONTROLLER, 'register', $e->getMessage(), 0); //Mail Developer if exception which could be coding issue, remember turn off debug mode when going live. It has return 500 in the trait
         }
@@ -57,22 +54,19 @@ class AuthController extends Controller
     {
         //Don't think key needed for login but might be worth it for extra security
         if($request->key != 'password')//Need to make a key that unique maybe with dates for every hour so that not anyone can register for now I made default key password incase you want to test register
-            return response()->json(['message' => 'Unauthenticated.'], 401);
+            abort(Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|string|email',
-            'password' => 'required|string'
-        ]);
+        $validator = Validator::make($request->all(), DataUserModel::RULE_LOGIN);
 
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 400);
+            return response()->json(['error'=>$validator->errors()], Response::HTTP_BAD_REQUEST);
         }
 
         try {
             $credentials = $request->only(['email', 'password']);
 
             if(!Auth::attempt($credentials))
-                return response()->json(['message' => 'Unauthenticated.'], 401);
+                return response()->json(['message' => 'Unauthenticated.'], Response::HTTP_UNAUTHORIZED);
 
             $user               = $request->user();
 
@@ -91,12 +85,11 @@ class AuthController extends Controller
     {
         try {
             if(auth('api')->user()->token()->revoke())
-                return response()->json(['message' => 'Successfully logged out'], 200);
+                return response()->json(['message' => 'Successfully logged out'], Response::HTTP_OK);
 
-            return response()->json(null, 500);
+            return response()->json(null, Response::HTTP_INTERNAL_SERVER_ERROR);
         } catch (\Exception $e) {
-            dd($e);
-            return response()->json(null, 500);
+            return response()->json(null, Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 

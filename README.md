@@ -28,6 +28,8 @@ Passport v9.3
 
 [Project GitHub Page](https://github.com/marcovie/realtimeTodoList)
 
+[http://127.0.0.1:8000/api/documentation](http://127.0.0.1:8000/api/documentation)
+
 ## Thoughts and assumptions
 I was told to keep the api simple, as I asked.
 
@@ -35,9 +37,11 @@ Is this api going to be used externally or just by internal mobile system. Is it
 
 Registering should not be open so not sure if 1 api key used for internal system(throttle would be issue) or if each person logins/register a unique key should be added when registering/login. If internal mobile api could be unique key hashed with dates. If its external might want to email them a key that expires over time. I added a dummy key to register and login(key => "password").
 
-I stored Expenses pence/cents as if you total expenses better with whole numbers. So you must pass cents. The output is json amount/100 to give £1.00
+I stored Expenses pence/cents as if you total expenses better with whole numbers. So you must pass cents. The output is json amount/100 to give 1.00
 
 I also added versioning to the APi incase v1.0 gets depracted in future and want to get all clients to move over.
+
+I added postman files under root/postman which has the requests. Just remember to add Auth Bearer Token.
 
 ## Installation
 
@@ -51,6 +55,7 @@ Step 4 - Make database same name as you stated in .env file.
 Step 5 - php artisan key:generate
 Step 6 - php artisan migrate --seed
 Step 7 - php artisan passport:install
+Step 8 - php artisan serve
 ```
 
 ## Usage

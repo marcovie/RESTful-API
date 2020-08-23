@@ -15,6 +15,26 @@ class DataUserModel extends Authenticatable
 
     const TABLE_NAME = 'data_users';
 
+    const RULE_REGISTER = [
+        'name'      => 'required|string',
+        'email'     => 'required|string|email|unique:data_users',
+        'password'  => 'required|string' // Left this simple for you guys to test. Please see below example of better solution
+        // 'password' => [
+        //             'required',
+        //             'confirmed',
+        //             'min:8',
+        //             'regex:/[a-z]/',      // must contain at least one lowercase letter
+        //             'regex:/[A-Z]/',      // must contain at least one uppercase letter
+        //             'regex:/[0-9]/',      // must contain at least one digit
+        //             'regex:/[@$!%*#?&]/', // must contain a special character
+        //         ]
+    ];
+
+    const RULE_LOGIN = [
+        'email' => 'required|string|email',
+        'password' => 'required|string'
+    ];
+
     protected $table = self::TABLE_NAME;
 
     /**

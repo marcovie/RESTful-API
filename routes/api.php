@@ -19,12 +19,12 @@ Route::post('1.0/login', 'API\v1\AuthController@login')->name('login');
 
 //Can change throttle limit if required. Added namespace so only have to put controller names.
 //Added v1 for verion of api incase we want to deprecate v1 to v2 in the future etc
-Route::middleware('checkauthapi', 'throttle:60,1')->namespace('API\v1')->group(function () {//added a middleware that check auth
+Route::middleware('checkauthapi', 'throttle:60,1')->prefix('1.0')->namespace('API\v1')->group(function () {//added a middleware that check auth
     //Auth Logout
-    Route::get('1.0/logout', 'AuthController@logout')->name('logout');
+    Route::get('logout', 'AuthController@logout')->name('logout');
 
     //Fetch Data from DataExpenseModel
-    Route::resource('1.0/expense', 'ExpenseController')->only(['index', 'store', 'show', 'update', 'destroy']);
+    Route::apiResource('expense', 'ExpenseController')->only(['index', 'store', 'show', 'update', 'destroy']);//The only shouldn't be needed
 });
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {

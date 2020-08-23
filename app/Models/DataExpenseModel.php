@@ -11,6 +11,15 @@ class DataExpenseModel extends Model
 
     const PAGINATION = 5;
 
+    const RULES = [//When storing or updating use these rules
+        'amount'          => 'required|integer|min:100',//this must be in pence or cents (Better to work in this if you want to do totals for amounts later). Not sure what lowest amount is that is required but put min of £1
+        'description'     => 'required|string|min:3',
+    ];
+
+    const CUSTOM_RULE_MESSAGES = [//Custom message for storing Amounts in pence
+        'integer' => 'The :attribute field must be in Pence.'
+    ];
+
     protected $table = self::TABLE_NAME;
 
     protected $fillable = [
@@ -24,7 +33,7 @@ class DataExpenseModel extends Model
     public function format() {//this incase want to format certain fields for api display
         return [
             'id'            => $this->id,
-            'amount'        => ($this->amount/100),//converts Pence/Cents to Decimal for display purpose
+            'amount'        => number_format((float)($this->amount/100), 2, '.', ''),//converts Pence/Cents to Float with decimal points for display purpose
             'description'   => $this->description,
             'created_at'    => $this->created_at->format('Y-m-d H:i:s'),
             'updated_at'    => $this->updated_at->format('Y-m-d H:i:s'),

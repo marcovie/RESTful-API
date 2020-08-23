@@ -1,0 +1,334 @@
+{
+	"info": {
+		"_postman_id": "2c2a74ce-54a4-4b35-93e2-e78de44012c6",
+		"name": "RESTful Api ",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://127.0.0.1:8000/api/1.0/register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Name",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "email@email.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "key",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/1.0/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"1.0",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/1.0/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "email@email.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "key",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/1.0/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"1.0",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/1.0/expense (Store)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5MTU4YzA4Zi02NWY0LTRlMDMtYmVhZC0yZjI4NzU2ODI2OGQiLCJqdGkiOiI5M2NkNjg5NzYzNWU5ZmIyMjY0MjM1NzdkOWRkYzc0Yjg0ZTc4Yjk2ZjFkMjVjOTJlNjFjMDkzZmE2MTY2M2I0MGFhZTE0YzM2ZmYwMDA0ZiIsImlhdCI6MTU5ODE2MDQxMCwibmJmIjoxNTk4MTYwNDEwLCJleHAiOjE2MTQwNTgwMTAsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.E9Qw6qtRBIHprY4IXUfWFqC_hu9RUzDcGcFJLHTZrmYnVwIaA0o5qgboLi5FA8opU7WKgVdHeOUZdgaxoaS_uhsoKhqXGZ1M6FkMf1RtOqB0RmT1VDZdONPPydVtq_J7vHIBtSGNmUSLEontXnYr103UHN2O2IOvTvI7yx7nosAZZK7n2O4ATagD-HY9fFvWfUmgYlFwvwfhBbWucipkKRAozLO1vGiaBmkNxWfGJ9vr_RHhofOSBEN_HCUV36eRXdq2l2fL8riR9oc7SRFG7HJ9eectaf-RDHFMolaeu2xumfY7CENjkL3pXQho9hsHZvjRiQSXTNzPit6ATbe6D8uhqDj_Hd6IcQfSHWvcaxPrOXELE_tUAYOGuzQlQUPWewjFM5S6d0r_F2bDcbLsUXo0uUASR_-aLKhygtef_Yoz26M4QTtY1A02LhA1O8ar5MksvQ_gJ1NOalvzMp7L-zyYy5k-lIOjvA6MprJINKK_Ds7VZkTun5xK3LnA6rXp7Dj3iRfQjdDhARrIpdvkt_6mwohuh1h7g2fUdB8Y2LLKdsV0OIyyceNxm7ZYAz8AiaNUHG5ANXnt1HiB4VGomosiR5laK1DP_UDilD1USDQnKoRntPYu3VRFxlEqH2JQY-s9egDxbITT7nKKYescZoqj4lqThCNP6wIiVvJ9YGw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "amount",
+							"value": "5000",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Fuel",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/1.0/expense",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"1.0",
+						"expense"
+					]
+				},
+				"description": "Add Auth Bearer Token"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/1.0/expense (Index)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5MTU4YzA4Zi02NWY0LTRlMDMtYmVhZC0yZjI4NzU2ODI2OGQiLCJqdGkiOiI5M2NkNjg5NzYzNWU5ZmIyMjY0MjM1NzdkOWRkYzc0Yjg0ZTc4Yjk2ZjFkMjVjOTJlNjFjMDkzZmE2MTY2M2I0MGFhZTE0YzM2ZmYwMDA0ZiIsImlhdCI6MTU5ODE2MDQxMCwibmJmIjoxNTk4MTYwNDEwLCJleHAiOjE2MTQwNTgwMTAsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.E9Qw6qtRBIHprY4IXUfWFqC_hu9RUzDcGcFJLHTZrmYnVwIaA0o5qgboLi5FA8opU7WKgVdHeOUZdgaxoaS_uhsoKhqXGZ1M6FkMf1RtOqB0RmT1VDZdONPPydVtq_J7vHIBtSGNmUSLEontXnYr103UHN2O2IOvTvI7yx7nosAZZK7n2O4ATagD-HY9fFvWfUmgYlFwvwfhBbWucipkKRAozLO1vGiaBmkNxWfGJ9vr_RHhofOSBEN_HCUV36eRXdq2l2fL8riR9oc7SRFG7HJ9eectaf-RDHFMolaeu2xumfY7CENjkL3pXQho9hsHZvjRiQSXTNzPit6ATbe6D8uhqDj_Hd6IcQfSHWvcaxPrOXELE_tUAYOGuzQlQUPWewjFM5S6d0r_F2bDcbLsUXo0uUASR_-aLKhygtef_Yoz26M4QTtY1A02LhA1O8ar5MksvQ_gJ1NOalvzMp7L-zyYy5k-lIOjvA6MprJINKK_Ds7VZkTun5xK3LnA6rXp7Dj3iRfQjdDhARrIpdvkt_6mwohuh1h7g2fUdB8Y2LLKdsV0OIyyceNxm7ZYAz8AiaNUHG5ANXnt1HiB4VGomosiR5laK1DP_UDilD1USDQnKoRntPYu3VRFxlEqH2JQY-s9egDxbITT7nKKYescZoqj4lqThCNP6wIiVvJ9YGw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/1.0/expense",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"1.0",
+						"expense"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "amount",
+							"description": "what field you want to order by",
+							"disabled": true
+						},
+						{
+							"key": "orderby",
+							"value": "desc",
+							"description": "which way order by should go, asc or desc",
+							"disabled": true
+						},
+						{
+							"key": "from_date",
+							"value": "2020-08-23",
+							"disabled": true
+						},
+						{
+							"key": "to_date",
+							"value": "2020-08-30",
+							"disabled": true
+						}
+					]
+				},
+				"description": "Add Auth Bearer Token"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/1.0/expense/14 (Show)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5MTU4YzA4Zi02NWY0LTRlMDMtYmVhZC0yZjI4NzU2ODI2OGQiLCJqdGkiOiI5M2NkNjg5NzYzNWU5ZmIyMjY0MjM1NzdkOWRkYzc0Yjg0ZTc4Yjk2ZjFkMjVjOTJlNjFjMDkzZmE2MTY2M2I0MGFhZTE0YzM2ZmYwMDA0ZiIsImlhdCI6MTU5ODE2MDQxMCwibmJmIjoxNTk4MTYwNDEwLCJleHAiOjE2MTQwNTgwMTAsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.E9Qw6qtRBIHprY4IXUfWFqC_hu9RUzDcGcFJLHTZrmYnVwIaA0o5qgboLi5FA8opU7WKgVdHeOUZdgaxoaS_uhsoKhqXGZ1M6FkMf1RtOqB0RmT1VDZdONPPydVtq_J7vHIBtSGNmUSLEontXnYr103UHN2O2IOvTvI7yx7nosAZZK7n2O4ATagD-HY9fFvWfUmgYlFwvwfhBbWucipkKRAozLO1vGiaBmkNxWfGJ9vr_RHhofOSBEN_HCUV36eRXdq2l2fL8riR9oc7SRFG7HJ9eectaf-RDHFMolaeu2xumfY7CENjkL3pXQho9hsHZvjRiQSXTNzPit6ATbe6D8uhqDj_Hd6IcQfSHWvcaxPrOXELE_tUAYOGuzQlQUPWewjFM5S6d0r_F2bDcbLsUXo0uUASR_-aLKhygtef_Yoz26M4QTtY1A02LhA1O8ar5MksvQ_gJ1NOalvzMp7L-zyYy5k-lIOjvA6MprJINKK_Ds7VZkTun5xK3LnA6rXp7Dj3iRfQjdDhARrIpdvkt_6mwohuh1h7g2fUdB8Y2LLKdsV0OIyyceNxm7ZYAz8AiaNUHG5ANXnt1HiB4VGomosiR5laK1DP_UDilD1USDQnKoRntPYu3VRFxlEqH2JQY-s9egDxbITT7nKKYescZoqj4lqThCNP6wIiVvJ9YGw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/1.0/expense/14",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"1.0",
+						"expense",
+						"14"
+					]
+				},
+				"description": "When storing keep track of ID so you can show it and Add Auth Bearer Token"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/1.0/expense/14 (Update)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5MTU4YzA4Zi02NWY0LTRlMDMtYmVhZC0yZjI4NzU2ODI2OGQiLCJqdGkiOiI5M2NkNjg5NzYzNWU5ZmIyMjY0MjM1NzdkOWRkYzc0Yjg0ZTc4Yjk2ZjFkMjVjOTJlNjFjMDkzZmE2MTY2M2I0MGFhZTE0YzM2ZmYwMDA0ZiIsImlhdCI6MTU5ODE2MDQxMCwibmJmIjoxNTk4MTYwNDEwLCJleHAiOjE2MTQwNTgwMTAsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.E9Qw6qtRBIHprY4IXUfWFqC_hu9RUzDcGcFJLHTZrmYnVwIaA0o5qgboLi5FA8opU7WKgVdHeOUZdgaxoaS_uhsoKhqXGZ1M6FkMf1RtOqB0RmT1VDZdONPPydVtq_J7vHIBtSGNmUSLEontXnYr103UHN2O2IOvTvI7yx7nosAZZK7n2O4ATagD-HY9fFvWfUmgYlFwvwfhBbWucipkKRAozLO1vGiaBmkNxWfGJ9vr_RHhofOSBEN_HCUV36eRXdq2l2fL8riR9oc7SRFG7HJ9eectaf-RDHFMolaeu2xumfY7CENjkL3pXQho9hsHZvjRiQSXTNzPit6ATbe6D8uhqDj_Hd6IcQfSHWvcaxPrOXELE_tUAYOGuzQlQUPWewjFM5S6d0r_F2bDcbLsUXo0uUASR_-aLKhygtef_Yoz26M4QTtY1A02LhA1O8ar5MksvQ_gJ1NOalvzMp7L-zyYy5k-lIOjvA6MprJINKK_Ds7VZkTun5xK3LnA6rXp7Dj3iRfQjdDhARrIpdvkt_6mwohuh1h7g2fUdB8Y2LLKdsV0OIyyceNxm7ZYAz8AiaNUHG5ANXnt1HiB4VGomosiR5laK1DP_UDilD1USDQnKoRntPYu3VRFxlEqH2JQY-s9egDxbITT7nKKYescZoqj4lqThCNP6wIiVvJ9YGw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/1.0/expense/14?amount=9999&description=Hotel",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"1.0",
+						"expense",
+						"14"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "9999"
+						},
+						{
+							"key": "description",
+							"value": "Hotel"
+						}
+					]
+				},
+				"description": "Add Auth Bearer Token"
+			},
+			"response": []
+		},
+		{
+			"name": "http://127.0.0.1:8000/api/1.0/expense/14 (Destroy)",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI5MTU4YzA4Zi02NWY0LTRlMDMtYmVhZC0yZjI4NzU2ODI2OGQiLCJqdGkiOiI5M2NkNjg5NzYzNWU5ZmIyMjY0MjM1NzdkOWRkYzc0Yjg0ZTc4Yjk2ZjFkMjVjOTJlNjFjMDkzZmE2MTY2M2I0MGFhZTE0YzM2ZmYwMDA0ZiIsImlhdCI6MTU5ODE2MDQxMCwibmJmIjoxNTk4MTYwNDEwLCJleHAiOjE2MTQwNTgwMTAsInN1YiI6IjIiLCJzY29wZXMiOltdfQ.E9Qw6qtRBIHprY4IXUfWFqC_hu9RUzDcGcFJLHTZrmYnVwIaA0o5qgboLi5FA8opU7WKgVdHeOUZdgaxoaS_uhsoKhqXGZ1M6FkMf1RtOqB0RmT1VDZdONPPydVtq_J7vHIBtSGNmUSLEontXnYr103UHN2O2IOvTvI7yx7nosAZZK7n2O4ATagD-HY9fFvWfUmgYlFwvwfhBbWucipkKRAozLO1vGiaBmkNxWfGJ9vr_RHhofOSBEN_HCUV36eRXdq2l2fL8riR9oc7SRFG7HJ9eectaf-RDHFMolaeu2xumfY7CENjkL3pXQho9hsHZvjRiQSXTNzPit6ATbe6D8uhqDj_Hd6IcQfSHWvcaxPrOXELE_tUAYOGuzQlQUPWewjFM5S6d0r_F2bDcbLsUXo0uUASR_-aLKhygtef_Yoz26M4QTtY1A02LhA1O8ar5MksvQ_gJ1NOalvzMp7L-zyYy5k-lIOjvA6MprJINKK_Ds7VZkTun5xK3LnA6rXp7Dj3iRfQjdDhARrIpdvkt_6mwohuh1h7g2fUdB8Y2LLKdsV0OIyyceNxm7ZYAz8AiaNUHG5ANXnt1HiB4VGomosiR5laK1DP_UDilD1USDQnKoRntPYu3VRFxlEqH2JQY-s9egDxbITT7nKKYescZoqj4lqThCNP6wIiVvJ9YGw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/1.0/expense/14",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"1.0",
+						"expense",
+						"14"
+					]
+				},
+				"description": "Add Auth Bearer Token"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
