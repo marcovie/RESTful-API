@@ -30,21 +30,6 @@ Passport v9.3
 
 [http://127.0.0.1:8000/api/documentation](http://127.0.0.1:8000/api/documentation)
 
-## Thoughts and assumptions
-I was told to keep the api simple, as I asked.
-
-Is this api going to be used externally or just by internal mobile system. Is it going to be used over multiple countries. If so expenses should have Currency included.
-
-Registering should not be open so not sure if 1 api key used for internal system(throttle would be issue) or if each person logins/register a unique key should be added when registering/login. If internal mobile api could be unique key hashed with dates. If its external might want to email them a key that expires over time. I added a dummy key to register and login(key => "password").
-
-I stored Expense amount in pence/cents as it would better when doing reporting to add up amounts. So you must pass amount in pence/cents. The output is json amount/100 to give 1.00
-
-I also added versioning to the APi incase v1.0 gets deprecated the in future and we want to get all clients to moved over to v2.0.
-
-I added postman files under root/postman which has api requests for the functions. Just remember to add Auth Bearer Token.
-
-I added interface for each api controller to use inteface to declare api controller functions and to add the documentation syntax to it to clean up the api controller.
-
 ## Installation
 
 ```bash
